@@ -1,4 +1,4 @@
-const materials = [
+const demoMaterials = [
  {id:1,name:"Electric Motor 5 HP",code:"DEMO-1001",category:"Electrical",quantity:2,unit:"Nos.",location:"Mysore Terminal",facility:"Terminal",condition:"Serviceable",status:"Available",specs:"5 HP motor; illustrative specification",cost:25000,description:"Illustrative surplus motor. Technical inspection and compatibility checks are required before reuse.",icon:"⚙"},
  {id:2,name:"Centrifugal Water Pump",code:"DEMO-1002",category:"Mechanical",quantity:1,unit:"No.",location:"Bangalore Terminal",facility:"Terminal",condition:"For Inspection",status:"Available",specs:"Industrial water pump; illustrative specification",cost:18000,description:"Sample pump listing for demonstrating cross-location discovery and reuse requests.",icon:"◉"},
  {id:3,name:"Office Chairs",code:"DEMO-1003",category:"Office Equipment",quantity:12,unit:"Nos.",location:"Lucknow Divisional Office",facility:"Office",condition:"Serviceable",status:"Available",specs:"Standard office chair",cost:4500,description:"Sample office furniture listing. Condition and suitability should be checked before transfer.",icon:"▤"},
@@ -15,6 +15,47 @@ const materials = [
  {id:14,name:"Electrical Cables",code:"DEMO-1014",category:"Electrical",quantity:100,unit:"Metres",location:"Mysore Terminal",facility:"Terminal",condition:"Serviceable",status:"Available",specs:"Cable size and rating to be confirmed",cost:120,description:"Illustrative cable listing. Confirm cable specification and condition before reuse.",icon:"ϟ"},
  {id:15,name:"Steel Filing Cabinets",code:"DEMO-1015",category:"Office Equipment",quantity:6,unit:"Nos.",location:"Lucknow Aviation Station",facility:"Aviation",condition:"Serviceable",status:"Available",specs:"Steel filing cabinet",cost:5500,description:"Sample furniture listing for the prototype.",icon:"▤"}
 ];
+let materials = demoMaterials;
+
+// Supabase project settings. The publishable key is designed for browser use;
+// database access is still controlled by Row Level Security policies.
+const SUPABASE_URL = "https://sqctdbdoyducekpnqzmc.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_mK1pDfNCrtgxTyTsVF4hHg_siM97opY";
+
+async function loadMaterialsFromSupabase(){
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/materials?select=*`, {
+      headers: {
+        apikey: SUPABASE_PUBLISHABLE_KEY,
+        Authorization: `Bearer ${SUPABASE_PUBLISHABLE_KEY}`
+      }
+    });
+    if (!response.ok) throw new Error(`Supabase returned ${response.status}`);
+    const rows = await response.json();
+    materials = rows.map((row, index) => ({
+      id: row.id ?? index + 1,
+      name: row.material_name || "Unnamed material",
+      code: row.material_code || `MAT-${row.id ?? index + 1}`,
+      category: row.category || "Uncategorised",
+      quantity: Number(row.quantity) || 0,
+      unit: row.unit || "Nos.",
+      location: row.location || "Location not specified",
+      facility: row.facility || "Not specified",
+      condition: row.condition || "Not specified",
+      status: row.status || "Available",
+      specs: row.specs || "",
+      cost: Number(row.cost) || 0,
+      description: row.description || "",
+      icon: row.icon || "▤"
+    }));
+    return true;
+  } catch (error) {
+    console.error("Could not load materials from Supabase; showing demonstration data.", error);
+    materials = demoMaterials;
+    return false;
+  }
+}
+
 const locations = [...new Set(materials.map(m=>m.location))].sort();
 const categories = [...new Set(materials.map(m=>m.category))].sort();
 let requests = JSON.parse(localStorage.getItem("adisheshanDemoRequests") || "[]");
@@ -85,4 +126,9 @@ $("requestForm").addEventListener("submit",e=>{
   $("requestForm").querySelector("button[type=submit]").disabled=true;
   setTimeout(()=>{$("requestForm").querySelector("button[type=submit]").disabled=false;closeModal("requestModal");},2400);
 });
-populateFilters();renderMaterials();renderStats();
+loadMaterialsFromSupabase().then(connected => {
+  populateFilters();
+  renderMaterials();
+  renderStats();
+  if (!connected) console.warn("Adisheshan Connect is using local demonstration records.");
+});
