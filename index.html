@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adisheshan Connect | Surplus into Savings</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true">i</div>
+    <div class="brand-copy">
+      <div class="brand-name">Adisheshan Connect</div>
+      <div class="brand-tagline">Connect Surplus. Create Value.</div>
+    </div>
+    <div class="demo-pill">PROTOTYPE DEMO</div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">INDIANOIL SURPLUS REUSE INITIATIVE</p>
+        <h1>Find what you need.<br><span>Reuse what we have.</span></h1>
+        <p class="hero-text">Discover surplus materials across locations and explore opportunities to reuse existing resources before buying new.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="hero-box">↻</div>
+        <div class="floating-card card-a">Materials<br><strong>Connected</strong></div>
+        <div class="floating-card card-b">Waste less<br><strong>Value more</strong></div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Prototype summary">
+      <article class="stat-card"><span class="stat-icon">▦</span><div><p>Materials listed</p><strong id="totalMaterials">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon">✓</span><div><p>Available now</p><strong id="availableMaterials">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon">↗</span><div><p>Requests submitted</p><strong id="totalRequests">0</strong></div></article>
+      <article class="stat-card"><span class="stat-icon">₹</span><div><p>Illustrative net savings</p><strong id="totalSavings">₹0</strong></div></article>
+    </section>
+
+    <section class="catalog">
+      <div class="section-heading">
+        <div><p class="eyebrow">SURPLUS DIRECTORY</p><h2>Explore available materials</h2></div>
+        <button class="primary-button" id="openRequestTop">＋ Add surplus material</button>
+      </div>
+
+      <div class="filters">
+        <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search material name or code..." aria-label="Search materials"></label>
+        <select id="locationFilter" aria-label="Filter by location"><option value="">All locations</option></select>
+        <select id="categoryFilter" aria-label="Filter by category"><option value="">All categories</option></select>
+        <select id="statusFilter" aria-label="Filter by status"><option value="">All statuses</option><option>Available</option><option>Reserved</option><option>Reused</option></select>
+      </div>
+
+      <div class="result-line"><span id="resultCount">0 materials</span><span>Sample data for demonstration only</span></div>
+      <div class="material-grid" id="materialGrid"></div>
+      <div class="empty-state hidden" id="emptyState">No matching materials. Try a different search or filter.</div>
+    </section>
+
+    <section class="how-it-works">
+      <div><p class="eyebrow">HOW IT WORKS</p><h2>From surplus to shared value</h2></div>
+      <div class="steps">
+        <div class="step"><span>01</span><strong>Discover</strong><p>Search materials across locations.</p></div>
+        <div class="step"><span>02</span><strong>Evaluate</strong><p>Review quantity, condition and specifications.</p></div>
+        <div class="step"><span>03</span><strong>Express interest</strong><p>Submit a sample request for coordination.</p></div>
+        <div class="step"><span>04</span><strong>Reuse</strong><p>Verify suitability and record actual savings.</p></div>
+      </div>
+    </section>
+
+    <footer>Adisheshan Connect · Concept prototype · All material records and figures are fictional.</footer>
+  </main>
+
+  <div class="modal-backdrop hidden" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <div class="modal">
+      <button class="close-button" data-close="detailModal" aria-label="Close">×</button>
+      <p class="eyebrow">MATERIAL DETAILS</p>
+      <div id="detailContent"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle">
+    <div class="modal">
+      <button class="close-button" data-close="requestModal" aria-label="Close">×</button>
+      <p class="eyebrow">DEMONSTRATION WORKFLOW</p>
+      <h2 id="requestTitle">Express interest in a material</h2>
+      <p class="modal-note">This prototype stores requests only in this browser. It does not send them to IndianOil or a shared database.</p>
+      <form id="requestForm">
+        <label>Material<select id="requestMaterial" required></select></label>
+        <label>Your location<select id="requestingLocation" required></select></label>
+        <label>Quantity required<input id="requestQuantity" type="number" min="1" value="1" required></label>
+        <label>Intended use<textarea id="requestPurpose" rows="3" placeholder="Briefly describe the intended use" required></textarea></label>
+        <label>Contact email<input id="requestEmail" type="email" placeholder="name@example.com" required></label>
+        <div class="form-actions"><button type="button" class="secondary-button" data-close="requestModal">Cancel</button><button class="primary-button" type="submit">Submit demo request</button></div>
+      </form>
+      <p class="form-message hidden" id="formMessage" role="status"></p>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
