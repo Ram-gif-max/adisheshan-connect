@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#071f3b">
-<meta name="description" content="Adisheshan Connect — Connect surplus. Create value. Discover reusable materials across locations.">
-<title>Adisheshan Connect | Connect Surplus. Create Value.</title>
+<meta name="description" content="Adishesh Connect — Connect surplus. Create value. Discover reusable materials across locations.">
+<title>Adishesh Connect | Connect Surplus. Create Value.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="topbar">
-  <a class="brand" href="#" aria-label="Adisheshan Connect home">
+  <a class="brand" href="#" aria-label="Adishesh Connect home">
     <span class="brand-emblem"><span>i</span></span>
-    <span class="brand-copy"><strong>Adisheshan <b>Connect</b></strong><small>CONNECT SURPLUS. CREATE VALUE.</small></span>
+    <span class="brand-copy"><strong>Adishesh <b>Connect</b></strong><small>CONNECT SURPLUS. CREATE VALUE.</small></span>
   </a>
   <nav class="nav-links"><a href="#discover">Discover</a><a href="#how-it-works">How it works</a></nav>
   <div class="top-actions"><span class="environment"><i></i> PILOT ENVIRONMENT</span><button class="button button-orange" id="openAddTop">＋ List surplus</button></div>
@@ -53,10 +53,10 @@
   <div class="empty-state hidden" id="emptyState"><div class="empty-icon">⌕</div><h3>No matching materials</h3><p>Try another keyword or clear one of the filters.</p><button class="button button-outline" id="emptyReset">Clear filters</button></div>
   <div class="directory-foot"><span class="tiny-lock">▣</span> Listings are subject to owner confirmation, technical suitability and applicable transfer approvals.</div>
 </section>
-<section class="impact-banner"><div class="impact-mark">↻</div><div><div class="eyebrow">THE IDEA BEHIND ADISHESHAN CONNECT</div><h2>Better connected. Better utilised.</h2><p>When surplus becomes visible, useful resources can find their next purpose before new procurement is considered.</p></div><a href="#how-it-works" class="impact-link">See how it works <span>→</span></a></section>
+<section class="impact-banner"><div class="impact-mark">↻</div><div><div class="eyebrow">THE IDEA BEHIND Adishesh CONNECT</div><h2>Better connected. Better utilised.</h2><p>When surplus becomes visible, useful resources can find their next purpose before new procurement is considered.</p></div><a href="#how-it-works" class="impact-link">See how it works <span>→</span></a></section>
 <section class="how-section section-wrap" id="how-it-works"><div class="eyebrow eyebrow-dark">A SIMPLE PATH TO REUSE</div><h2>From surplus to shared value.</h2><div class="steps-grid"><article class="step-card"><span class="step-number">01</span><div class="step-icon">⌕</div><h3>Discover</h3><p>Search materials across locations from one central directory.</p></article><article class="step-card"><span class="step-number">02</span><div class="step-icon">◎</div><h3>Evaluate</h3><p>Review quantity, condition and specifications with the owning location.</p></article><article class="step-card"><span class="step-number">03</span><div class="step-icon">↗</div><h3>Coordinate</h3><p>Express interest and coordinate next steps with the material custodian.</p></article><article class="step-card"><span class="step-number">04</span><div class="step-icon">✓</div><h3>Reuse</h3><p>Complete approvals, record the transfer and verify actual value created.</p></article></div></section>
 </main>
-<footer><div class="footer-brand"><span class="brand-emblem small"><span>i</span></span><span><b>Adisheshan Connect</b><small>Connect Surplus. Create Value.</small></span></div><p>Concept pilot · Use fictional/demo records until authorised for internal deployment.</p><span class="footer-right">RESOURCE EFFICIENCY, CONNECTED.</span></footer>
+<footer><div class="footer-brand"><span class="brand-emblem small"><span>i</span></span><span><b>Adishesh Connect</b><small>Connect Surplus. Create Value.</small></span></div><p>Concept pilot · Use fictional/demo records until authorised for internal deployment.</p><span class="footer-right">RESOURCE EFFICIENCY, CONNECTED.</span></footer>
 <div class="modal-backdrop hidden" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="modal"><button class="close-button" data-close="detailModal" aria-label="Close">×</button><div class="eyebrow eyebrow-dark">MATERIAL PROFILE</div><div id="detailContent"></div></div></div>
 <div class="modal-backdrop hidden" id="addModal" role="dialog" aria-modal="true" aria-labelledby="addTitle"><div class="modal"><button class="close-button" data-close="addModal" aria-label="Close">×</button><div class="eyebrow eyebrow-dark">CONTRIBUTE TO THE DIRECTORY</div><h2 id="addTitle">Add material record</h2><p class="modal-intro">Fields start blank. The record is saved to Supabase automatically as you enter details. The material name creates the record first; all other fields are saved as you edit them.</p><div class="notice"><strong>Important</strong><p>Direct browser writes require Supabase INSERT and UPDATE policies. Without employee login, anyone who can access this public website could submit or alter records. Use only approved demo data until IndianOil IT approves secure access.</p></div><form id="addForm" class="form-grid" autocomplete="off"><label class="span-two">Material name<input id="addName" name="material_name" maxlength="120" placeholder="Material name"></label><label>Category<input id="addCategory" name="category" maxlength="120" placeholder="Category"></label><label>Location<input id="addLocation" name="location" maxlength="160" placeholder="Location"></label><label>Quantity<input id="addQuantity" name="quantity" type="number" step="1" placeholder="Quantity"></label><label>Condition<input id="addCondition" name="condition" maxlength="120" placeholder="Condition"></label><label>Status<input id="addStatus" name="status" maxlength="80" placeholder="Status"></label><label class="span-two">Description<textarea id="addDescription" name="description" rows="3" maxlength="2000" placeholder="Description"></textarea></label><div class="form-actions span-two"><button type="button" class="button button-reset" data-close="addModal">Close</button><span id="autosaveStatus" class="autosave-status" role="status">Not saved yet</span></div></form><div id="addMessage" class="form-message hidden" role="status"></div></div></div>
 <div class="toast hidden" id="toast" role="status"></div>
